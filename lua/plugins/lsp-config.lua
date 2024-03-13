@@ -30,10 +30,19 @@ return {
         capabilities = capabilities
       })
 
+      lspconfig.solargraph.setup({
+        capabilities = capabilities
+      })
+
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
       vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+      vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
+
+      local _format = function ()
+        return  vim.lsp.buf.format({ timeout_ms = 5000 })
+      end
+      vim.keymap.set("n", "<leader>f", _format, {})
     end,
   },
 }
